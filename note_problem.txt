@@ -1,0 +1,7 @@
+Bermasalah
+
+start 19:29
+end 08.31 AM
+max exe time : 100000
+
+Data MySQL: 136440 Rows
