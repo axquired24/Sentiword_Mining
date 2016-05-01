@@ -33,13 +33,13 @@
 			<fieldset>
 
 			<!-- Form Name -->
-			<legend>Word Score Search</legend>
+			<legend>Sentences Score Search</legend>
 
 			<!-- Text input-->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="search_w">Search Word</label>  
+			  <label class="col-md-4 control-label" for="search_w">Search Sentences Score</label>  
 			  <div class="col-md-4">
-			  <input id="search_w" name="search_w" type="text" placeholder="Type a word" class="form-control input-md" required="">
+			  <input id="search_w" name="search_sen" type="text" placeholder="Type a sentences" class="form-control input-md" required="">
 			    
 			  </div>
 			</div>
@@ -60,30 +60,46 @@
 			<?php 
 				if(isset($_POST[submit]))
 				{
-					$phrase_p	= $_POST['search_w'];
-					$phrase_p 	= str_replace("'", "`", $phrase_p);
-					$phrase_p 	= strtolower($phrase_p);
-					$sql 		= "SELECT * FROM dbtxt WHERE synset_term LIKE \"% $phrase_p#%\" OR synset_term LIKE \"$phrase_p#%\"";
-					$exe_sql	= mysql_query($sql);
-					
-					$pos_score 	= 0;
-					$neg_score 	= 0;
-					while($out_sql 	= mysql_fetch_array($exe_sql))
-					{
-						$pos_score 	+= $out_sql[pos_score];
-						$neg_score 	+= $out_sql[neg_score];
-					}
-					$total_score 	= $pos_score - $neg_score;
+					$sentences 	= $_POST['search_sen'];
+					$origin_sen = $sentences;
+					$sentences 	= preg_replace('/[^a-z]+/i', '__', $sentences); 
+					$sentences 	= explode('__', $sentences);
+					$total_score= 0;
+					$per_phrase = "";
 
-					// if(empty($phrase))
-					// {
-					// 	$found = "Word Not Found. Try Again";
-					// }
-					// else
-					// {
-					// 	$found = "Word Found. Score is";
-					// }
-					$found 	= "Result";
+					foreach ($sentences as $phrase_p) 
+					{
+						$phrase_p 	= str_replace("'", "`", $phrase_p);
+						$phrase_p 	= strtolower($phrase_p);
+						$sql 		= "SELECT synset_term, pos_score, neg_score FROM dbtxt WHERE synset_term LIKE \"$phrase_p#%\" OR synset_term LIKE \"% $phrase_p#%\"";
+						$exe_sql	= mysql_query($sql);
+						$phrase 	= $phrase_p;
+
+						$pos_score 	= 0;
+						$neg_score 	= 0;
+						while ($arr_sql = mysql_fetch_array($exe_sql))
+						{
+							$pos_score += $arr_sql[pos_score];
+							$neg_score += $arr_sql[neg_score];
+						}
+						// $score 		= $out_sql[pos_score] - $out_sql[neg_score];
+
+						$score 		 = $pos_score - $neg_score;						
+						$per_phrase .= 	"<tr><td>".$phrase."</td>".
+										"<td>".$score."</td></tr>";
+
+						$total_score += $score;
+					} // Close foreach sentence
+
+					// Check Score is not null
+					if($total_score == 0)
+					{
+						$found = "No Word Not Found. Try Again";
+					}
+					else
+					{
+						$found = "Word Found. Score is";
+					}					
 			?>
 				<h4 class="page-header text-center hid"><?php echo $found; ?></h4>
 				<div class="hid" class="row">
@@ -94,9 +110,10 @@
 								<th>Score</th>
 							</thead>
 							<tbody>
-								<tr>
-									<td><?php echo $phrase_p; ?></td>
-									<td><?php echo $total_score; ?></td>
+								<?php echo $per_phrase; ?>
+								<tr class="active">
+									<td><strong>Total Score</strong></td>
+									<td><strong><?php echo $total_score; ?></strong></td>
 								</tr>
 							</tbody>
 						</table>						
