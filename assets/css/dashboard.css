@@ -1,0 +1,95 @@
+html, body {
+    height: 100%;
+}
+body {
+    margin:0;
+    padding: 0;
+    box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+    background-image: url("../image/img31.jpg");
+}
+.body {
+    padding-top: 70px;
+}
+.body > .col-md-3 {           
+    min-height: 600px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    right: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-left: 1px solid #eee;
+    opacity: 0.9;
+} 
+
+/*Main Content*/
+.main {
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  opacity: 0.8;
+  padding: 20px;  
+}
+
+  .copyright {
+    display:block; 
+    position:fixed; 
+    bottom:10px; 
+    right: 100px;
+  }
+
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+
+
+}
+
+.main .page-header {
+    margin: 0;
+}
+
+.main textarea[name="search_sen"] {
+    font-size: 1.3em;
+    line-height: 1.3em;
+    padding: 20px;
+    background: transparent;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+
+.main input[type="submit"] {
+    font-size: 2em;
+    padding: 20px;
+    background: transparent;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,.5);   
+    opacity: 1.0;
+}
+
+.main input[type="submit"]:hover {
+    background: #fff;
+    opacity: 0.5;
+    color: #000;
+    text-shadow: 0 0 0 rgba(0,0,0,.5); 
+}
+
+.main label.btn-noclick {
+    background: transparent;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+
+.main label.active {
+    background: #fff;
+    color: #000;
+    text-shadow: 0 0 0 rgba(0,0,0,.5);
+}
