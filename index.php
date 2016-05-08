@@ -38,6 +38,7 @@
 							<input type="submit" name="submit" class="btn btn-lg btn-default" value="View Results">
 						</div>
 				</form>
+
 			</div>
 			<div class="col-md-4 col-xs-6 sidebar">
 			<h3 class="page-header text-left">Mining Result <span class="pull-right glyphicon glyphicon-list-alt"></span></h3>
@@ -54,11 +55,11 @@
 					$origin_sen = $sentences;
 					if($lang_get == "id")
 					{
-						// Pass Translate bahasa
+						// Translate bahasa lebih dulu
 					}
 					else if($lang_get == "en")
 					{
-						// English Dict langsung pake
+						// English Dict langsung scoring
 					}
 
 					// Lalu jalankan perintah
@@ -109,8 +110,9 @@
 				</table>
 			<?php
 				} // Close Else ! isset
-			?>
-			<div align="center" class="copyright hidden-xs"> &copy; 2016 Informatika <br>Universitas Muhammadiyah Surakarta</div>
+			?>			
+				<!-- Footer Copyright -->
+				<div align="center" class="copyright hidden-xs"> &copy; 2016 Informatika <br>Universitas Muhammadiyah Surakarta</div>			
 			</div> <!-- Close class="col-md-3 sidebar -->
 		</div> <!-- Close container-fluid -->
 	</div>
