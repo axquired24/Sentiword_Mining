@@ -56,10 +56,17 @@
 					if($lang_get == "id")
 					{
 						// Translate bahasa lebih dulu
+						$sentences_id 	= $sentences;
+						include "id_en_transl.php";
+						$sentences 		= $translatedStr;
+
+						$text_f 		= "Translate from (id): <strong>$sentences_id</strong> <br>
+											to (en): <u>$sentences</u>";
 					}
 					else if($lang_get == "en")
 					{
 						// English Dict langsung scoring
+						$text_f 		= "Display result from (en): <u>$sentences</u>";
 					}
 
 					// Lalu jalankan perintah
@@ -79,14 +86,25 @@
 
 						$pos_score 	= 0;
 						$neg_score 	= 0;
+						$cnt_score 	= 0;
 						while ($arr_sql = mysql_fetch_array($exe_sql))
 						{
 							$pos_score += $arr_sql[pos_score];
 							$neg_score += $arr_sql[neg_score];
+							$cnt_score += 1;
 						}
 						// $score 		= $out_sql[pos_score] - $out_sql[neg_score];
 
-						$score 		 = $pos_score - $neg_score;						
+						//Prevent div by 0
+						if($cnt_score == 0)
+						{
+							$cnt_score += 1;
+						}
+
+						$score_		 = $pos_score - $neg_score;
+						$score_		 = $score_ / $cnt_score;
+						$score 		 = round($score_, 2);
+
 						$per_phrase .= 	"<tr><td>".$phrase."</td>".
 										"<td>".$score."</td></tr>";
 
@@ -95,6 +113,7 @@
 
 					
 			?>
+				<p><?php echo $text_f; ?></p>
 				<table class="table table-responsive">
 					<thead class="bg-primary">
 						<th>Sentences</th>
@@ -108,6 +127,7 @@
 						</tr>
 					</tbody>
 				</table>
+				<p class="text-center"> ... </p>
 			<?php
 				} // Close Else ! isset
 			?>			
