@@ -61,9 +61,10 @@ body {
     font-size: 1.3em;
     line-height: 1.3em;
     padding: 20px;
+    margin-top: 50px;
     background: transparent;
     color: #fff;
-    text-shadow: 0 1px 3px rgba(0,0,0,.5);
+    text-shadow: 0 1px 3px rgba(0,0,0,.5);    
 }
 
 .main input[type="submit"] {
