@@ -8,15 +8,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">SentiWord Mining</a>
+      <a class="navbar-brand" href="#">Sentinesia</a>
     </div>
     <!-- <p class="navbar-text visible-lg">SOLOCUP 2016</p> -->
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-record"></span> Try Mining Text</a></li>       
+        <li id="nav-home"><a href="./?p=home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+        <li id="try"><a href="./?p=try"><span class="glyphicon glyphicon-record"></span> Mining Sekarang</a></li>       
       </ul>
 
       <ul class="nav navbar-nav navbar-right">        
@@ -25,7 +25,7 @@
           <ul class="dropdown-menu">
             <li><a href="#"><span class="glyphicon glyphicon-info-sign"> </span> About System</a></li>
             <li class="divider"></li>            
-            <li><a href="#"><span class="glyphicon glyphicon-tasks"> </span> How to use</a></li>
+            <li><a href="./?p=home#how-to"><span class="glyphicon glyphicon-tasks"> </span> How to use</a></li>
             <li class="divider"></li>
             <li><a href="#"><span class="glyphicon glyphicon-user"></span> Contact a developer</a></li>
           </ul>
