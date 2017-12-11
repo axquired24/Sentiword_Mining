@@ -1,5 +1,5 @@
 # Sentiment Word Analysis
-A tool used to analys word score of a sentences, to know wheter the sentences was negative or positive
+A tool used to analys and sum word's score of a sentences, to know wheter the sentences was negative or positive
 
 ## Usage
 import .sql database to mysql (i recommend using cli than GUI tools, based on its row size)
