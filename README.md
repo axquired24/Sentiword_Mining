@@ -3,7 +3,7 @@ A tool used to analys and sum word's score of a sentences, to know wheter the se
 
 ## Usage
 import .sql database to mysql (i recommend using cli than GUI tools, based on its row size)
-```sql
+```bash
 mysql -u username -p database_name < file.sql
 ```
 
